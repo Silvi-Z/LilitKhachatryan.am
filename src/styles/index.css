@@ -2,55 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---- Original custom styles, copied verbatim from the HTML <style> block ---- */
-body {
-    font-family: 'Comfortaa', 'Inter', sans-serif;
-    background: linear-gradient(135deg, #fff7f9 0%, #fff0f3 50%, #fff8f0 100%);
-    color: #4a2e35;
+@layer base {
+    body {
+        background-color: theme('colors.ivory');
+        color: theme('colors.ink');
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible {
+        outline: 2px solid theme('colors.berry');
+        outline-offset: 2px;
+    }
 }
-.fluffy-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    border: 2px solid #fecdd6;
-    box-shadow: 0 15px 35px -10px rgba(244, 63, 94, 0.12);
-    border-radius: 2rem;
-    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+/* Shared component styles (components layer: utility classes can still override them) */
+@layer components {
+    .tag {
+        background-color: theme('colors.rose / 55%');
+        color: theme('colors.plum');
+    }
+    .btn-primary,
+    .btn-secondary,
+    .btn-light {
+        border-radius: 9999px;
+        border: 1px solid transparent;
+        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, filter 0.2s ease;
+    }
+    /* filled berry: main call to action */
+    .btn-primary {
+        background-color: theme('colors.berry');
+        border-color: theme('colors.berry');
+        color: #fff;
+    }
+    .btn-primary:hover:not(:disabled) {
+        filter: brightness(0.9);
+    }
+    /* plum outline: secondary action on light backgrounds */
+    .btn-secondary {
+        border-color: theme('colors.plum');
+        color: theme('colors.plum');
+    }
+    .btn-secondary:hover {
+        background-color: theme('colors.plum');
+        color: theme('colors.ivory');
+    }
+    /* ivory outline: action on plum/berry backgrounds */
+    .btn-light {
+        border-color: theme('colors.ivory / 70%');
+        color: theme('colors.ivory');
+    }
+    .btn-light:hover {
+        background-color: theme('colors.ivory');
+        color: theme('colors.plum');
+    }
+    .field {
+        display: block;
+        width: 100%;
+        padding: 0.7rem 1rem;
+        font-size: 0.9375rem;
+        color: theme('colors.ink');
+        background-color: theme('colors.ivory');
+        border: 1px solid theme('colors.plum / 20%');
+        border-radius: 0.75rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field::placeholder {
+        color: theme('colors.ink / 55%');
+    }
+    .field:focus {
+        outline: none;
+        border-color: theme('colors.berry');
+        box-shadow: 0 0 0 3px theme('colors.berry / 20%');
+    }
 }
-.fluffy-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 22px 40px -10px rgba(244, 63, 94, 0.22);
-    border-color: #fda4af;
-}
-.gradient-pink-btn {
-    background: linear-gradient(135deg, #fb7185 0%, #f43f5e 50%, #e11d48 100%);
-    box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.4);
-}
-.gradient-pink-btn:hover {
-    box-shadow: 0 15px 30px -5px rgba(244, 63, 94, 0.55);
-    transform: translateY(-2px);
-}
-.gradient-text-pink {
-    background: linear-gradient(135deg, #e11d48, #fb7185, #d946ef);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.soft-ribbon-tag {
-    background: #ffe4e9;
-    color: #be123c;
-    border: 1px solid #fecdd6;
-}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #fff5f7;
+    background: theme('colors.ivory');
 }
 ::-webkit-scrollbar-thumb {
-    background: #fecdd6;
+    background: theme('colors.rose');
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #fb7185;
+    background: theme('colors.berry');
 }
 
 /* ---- Migration-only rule ----
