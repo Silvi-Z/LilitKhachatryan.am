@@ -92,6 +92,7 @@ function buildMessage({ name, phone, age, message }, date) {
 
 async function sendToTelegram(text) {
   const token = process.env.TELEGRAM_BOT_TOKEN
+  console.log('TELEGRAM_BOT_TOKEN', token,process )
   const chatId = process.env.TELEGRAM_CHAT_ID
   if (!token || !chatId) {
     console.error('Telegram is not configured: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID missing')
