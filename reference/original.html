@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="hy" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Լիլիթ Խաչատրյան | Մանկավարժ Մայրիկ - Սոցիալական Մանկավարժություն և Ծնողավարում</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        blush: {
+                            50: '#fff5f7',
+                            100: '#ffe4e9',
+                            200: '#fecdd6',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                        },
+                        cream: {
+                            50: '#fffdfa',
+                            100: '#fff8f0',
+                            200: '#ffeedd',
+                            300: '#ffe0c2',
+                        },
+                        rosewood: {
+                            800: '#58212c',
+                            900: '#3d141d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Comfortaa', 'Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for cute soft typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fff7f9 0%, #fff0f3 50%, #fff8f0 100%);
+            color: #4a2e35;
+        }
+        .fluffy-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid #fecdd6;
+            box-shadow: 0 15px 35px -10px rgba(244, 63, 94, 0.12);
+            border-radius: 2rem;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .fluffy-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 22px 40px -10px rgba(244, 63, 94, 0.22);
+            border-color: #fda4af;
+        }
+        .gradient-pink-btn {
+            background: linear-gradient(135deg, #fb7185 0%, #f43f5e 50%, #e11d48 100%);
+            box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.4);
+        }
+        .gradient-pink-btn:hover {
+            box-shadow: 0 15px 30px -5px rgba(244, 63, 94, 0.55);
+            transform: translateY(-2px);
+        }
+        .gradient-text-pink {
+            background: linear-gradient(135deg, #e11d48, #fb7185, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .soft-ribbon-tag {
+            background: #ffe4e9;
+            color: #be123c;
+            border: 1px solid #fecdd6;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff5f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fecdd6;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fb7185;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-blush-300 selection:text-blush-800">
+
+    <!-- Cute Top Announcement Banner -->
+    <div class="bg-gradient-to-r from-blush-200 via-blush-100 to-cream-200 text-blush-800 text-xs py-2 px-4 text-center font-bold border-b border-blush-200 flex items-center justify-center gap-2">
+        <span>🎀</span>
+        <span>Վստահելի և Հանգիստ Ծնողավարում 7-18 Տարեկան Երեխաների Ծնողների Համար</span>
+        <span>🎀</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-blush-100 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl gradient-pink-btn flex items-center justify-center text-white text-xl shadow-md transform group-hover:rotate-6 transition-transform">
+                    🎀
+                </div>
+                <div>
+                    <span class="text-lg font-black tracking-tight text-rosewood-800 block leading-none">Մանկավարժ Մայրիկ</span>
+                    <span class="text-[11px] text-blush-500 font-bold">Լիլիթ Խաչատրյան</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 text-xs font-bold text-slate-600">
+                <a href="#about" class="hover:text-blush-500 transition-colors flex items-center gap-1.5">
+                    <span>🎀</span> Իմ մասին
+                </a>
+                <a href="#experience" class="hover:text-blush-500 transition-colors flex items-center gap-1.5">
+                    <span>🌸</span> Փորձ
+                </a>
+                <a href="#topics" class="hover:text-blush-500 transition-colors flex items-center gap-1.5">
+                    <span>💕</span> Տարիքային խմբեր
+                </a>
+                <a href="#services" class="hover:text-blush-500 transition-colors flex items-center gap-1.5">
+                    <span>✨</span> Ծառայություններ
+                </a>
+                <a href="#contact" class="hover:text-blush-500 transition-colors flex items-center gap-1.5">
+                    <span>💌</span> Կապ
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="copySiteLink()" id="copy-link-btn" class="px-4 py-2 rounded-full text-xs font-bold bg-blush-100 text-blush-600 hover:bg-blush-200 transition-all border border-blush-200 hidden sm:flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-blush-400"></i>
+                    <span>Կիսվել</span>
+                </button>
+                <button onclick="openBookingModal()" class="gradient-pink-btn text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2">
+                    <span>🎀</span>
+                    <span>Գրանցվել</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="relative px-4 lg:px-8 py-12 md:py-16 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                
+                <div class="lg:col-span-12 space-y-6 text-center max-w-3xl mx-auto">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full soft-ribbon-tag text-xs font-extrabold shadow-sm">
+                        <span>🎀</span>
+                        <span>Էմպաթիա • Ջերմություն • Խաղաղ Ծնողավարում</span>
+                        <span>🎀</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-rosewood-800 leading-tight">
+                        Ողջո՛ւյն, ես <span class="gradient-text-pink">Լիլիթն եմ 🌸</span>
+                    </h1>
+
+                    <p class="text-slate-700 text-sm sm:text-base font-medium leading-relaxed bg-white/60 p-6 rounded-3xl border border-blush-100 shadow-sm">
+                        Որպես սոցիալական մանկավարժ և մայրիկ, ես գիտեմ, թե որքան դժվար կարող է լինել ծնողավարության ճանապարհը։ Իմ նպատակն է օգնել ծնողներին վերագտնել հանգստությունն ու վստահությունը՝ հասկանալով երեխայի վարքի պատճառները։
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap justify-center gap-4">
+                        <button onclick="openBookingModal()" class="gradient-pink-btn text-white font-extrabold px-8 py-4 rounded-3xl text-sm transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-heart"></i>
+                            Անհատական Խորհրդատվություն
+                        </button>
+                        <a href="#topics" class="bg-white text-blush-600 font-bold px-7 py-4 rounded-3xl border-2 border-blush-200 hover:bg-blush-50 transition-all flex items-center gap-2 text-sm shadow-sm">
+                            <span>🎀</span>
+                            Ընտրել Տարիքը (7+)
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="px-4 lg:px-8 py-16 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <span class="text-blush-500 text-xs font-extrabold tracking-widest uppercase">🎀 Կրթություն և Փորձ 🎀</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-rosewood-800">Մասնագիտական Փորձառություն</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="fluffy-card p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-blush-100 text-blush-600 flex items-center justify-center text-2xl font-bold">
+                        🎓
+                    </div>
+                    <h3 class="text-lg font-bold text-rosewood-800">Բարձրագույն Կրթություն</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Սոցիալական մանկավարժության բարձրագույն կրթություն՝ երեխաների սոցիալականացման, վարքագծային խնդիրների և ընտանեկան միջավայրի մասնագիտական ուսումնասիրությամբ։
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="fluffy-card p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-cream-200 text-amber-700 flex items-center justify-center text-2xl font-bold">
+                        🏛️
+                    </div>
+                    <h3 class="text-lg font-bold text-rosewood-800">Պրակտիկ Փորձ</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Տարիների պրակտիկ աշխատանք դպրոցում, սոցիալական հոգածության կենտրոնում և հոգեբանամանկավարժական կենտրոնում։
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="fluffy-card p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-bold">
+                        🏫
+                    </div>
+                    <h3 class="text-lg font-bold text-rosewood-800">Շիրակացու Ճեմարան</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Ներկայումս աշխատանքային փորձ Շիրակացու ճեմարանում որպես մանկավարժ՝ աջակցելով աշակերտներին ու ծնողներին ամենօրյա ուսումնադաստիարակչական հարցերում։
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Age Focus Section (ONLY 7+) -->
+        <section id="topics" class="px-4 lg:px-8 py-16 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                <span class="text-blush-500 text-xs font-extrabold tracking-widest uppercase">🎀 Տարիքային Փուլեր 🎀</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-rosewood-800">Աջակցություն 7-18 Տարեկան Երեխաների Ծնողներին</h2>
+                <p class="text-slate-600 text-xs sm:text-sm">Ընտրեք համապատասխան տարիքային խումբը․</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex justify-center gap-4 mb-10">
+                <button onclick="switchAgeGroup('age712')" id="tab-age712" class="age-tab active px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm transition-all gradient-pink-btn text-white shadow-md flex items-center gap-2">
+                    <span>👧🎈</span> 7 - 12 Տարեկան (Կրտսեր Դպրոցական)
+                </button>
+                <button onclick="switchAgeGroup('age1218')" id="tab-age1218" class="age-tab px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm transition-all border-2 border-blush-200 text-slate-700 bg-white hover:bg-blush-50 flex items-center gap-2">
+                    <span>🎒🎧</span> 12 - 18 Տարեկան (Դեռահասություն)
+                </button>
+            </div>
+
+            <!-- Age 7-12 Content -->
+            <div id="group-age712" class="age-group-content space-y-6">
+                <div class="fluffy-card p-6 sm:p-10">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-4">
+                            <span class="soft-ribbon-tag px-3 py-1 rounded-full text-xs font-bold">7 - 12 Տարեկան</span>
+                            <h3 class="text-2xl font-bold text-rosewood-800">Դպրոցական Հարմարվում և Ուսումնական Մոտիվացիա</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                Այս փուլում երեխան անցնում է դպրոցական նոր կյանքի։ Հաճախ առաջանում են տնային աշխատանքների շուրջ վեճեր, ուշադրության շեղում, էկրանային կախվածություն և հասակակիցների հետ կոնֆլիկտներ։
+                            </p>
+                            
+                            <ul class="space-y-2.5 text-xs text-slate-700">
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Դպրոցական միջավայրին հարմարվելու դժվարություններ</li>
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Տնային դասերի պատրաստման ինքնուրույնություն</li>
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Էկրանային ժամանակի առողջ սահմանափակում</li>
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Κոնֆլիկտների հաղթահարում ընկերների հետ</li>
+                            </ul>
+
+                            <div class="pt-2">
+                                <button onclick="openBookingModal('7-12 տարեկան')" class="gradient-pink-btn text-white px-6 py-3 rounded-2xl text-xs font-bold">
+                                    Գրանցվել խորհրդատվության (7-12 տարեկան)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-blush-50/80 p-6 rounded-3xl border border-blush-200 space-y-3">
+                            <div class="text-2xl">💡</div>
+                            <h4 class="font-bold text-rosewood-800 text-sm">Մանկավարժական Խորհուրդ</h4>
+                            <p class="text-xs text-slate-600 italic leading-relaxed">
+                                «Դպրոցական տարիքում երեխային պետք չէ ստիպել սովորել, այլ պետք է օգնել ձևավորել պատասխանատվություն։ Երբ ծնողը դառնում է աջակից, տնայինների շուրջ վեճերը դադարում են։»
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Age 12-18 Content -->
+            <div id="group-age1218" class="age-group-content hidden space-y-6">
+                <div class="fluffy-card p-6 sm:p-10">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-4">
+                            <span class="soft-ribbon-tag px-3 py-1 rounded-full text-xs font-bold">12 - 18 Տարեկան</span>
+                            <h3 class="text-2xl font-bold text-rosewood-800">Դեռահասության Ճգնաժամ և Սահմաններ</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                Դեռահասությունը ինքնության փնտրտուքի փուլն է։ Ծնողները բախվում են փակվածության, տրամադրության տատանումների, ինքնուրույնության պահանջի և անձնական սահմանների պաշտպանության։
+                            </p>
+                            
+                            <ul class="space-y-2.5 text-xs text-slate-700">
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Դեռահասի հետ վստահելի կապի պահպանում</li>
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Անձնական սահմանների հարգում առանց վերահսկողության</li>
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Էմոցիոնալ տատանումների հանգիստ ընդունում</li>
+                                <li class="flex items-center gap-2.5"><span class="text-blush-500">🎀</span> Ինքնագնահատականի բարձրացում</li>
+                            </ul>
+
+                            <div class="pt-2">
+                                <button onclick="openBookingModal('12-18 տարեկան')" class="gradient-pink-btn text-white px-6 py-3 rounded-2xl text-xs font-bold">
+                                    Գրանցվել խորհրդատվության (12-18 տարեկան)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-blush-50/80 p-6 rounded-3xl border border-blush-200 space-y-3">
+                            <div class="text-2xl">✨</div>
+                            <h4 class="font-bold text-rosewood-800 text-sm">Դեռահասի հետ կապը</h4>
+                            <p class="text-xs text-slate-600 italic leading-relaxed">
+                                «Դեռահասի հետ աշխատելիս ամենակարևորը նրան լսելն է, այլ ոչ թե քննադատելը։ Խորհրդատվության ընթացքում մենք գտնում ենք այն լեզուն, որով դեռահասը կրկին սկսում է վստահել ծնողին։»
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="px-4 lg:px-8 py-16 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <span class="text-blush-500 text-xs font-extrabold tracking-widest uppercase">🎀 Ծառայություններ և Գներ 🎀</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-rosewood-800">Ինչպես Կարող Ենք Աշխատել</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="fluffy-card p-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blush-100 text-blush-600 flex items-center justify-center text-xl font-bold">
+                            💬
+                        </div>
+                        <h3 class="text-xl font-bold text-rosewood-800">Անհատական Խորհրդատվություն</h3>
+                        <div class="text-2xl font-black text-rosewood-900">14,990 դրամ</div>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            60 րոպեանոց խորքային հանդիպում (Օնլայն կամ Անձամբ)։ Վերլուծում ենք կոնկրետ ձեր ընտանիքի խնդիրն ու կազմում գործողությունների քայլարշավ։
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-700 border-t border-blush-100 pt-3">
+                            <li>🎀 Անհատական վերլուծություն</li>
+                            <li>🎀 Գործնական քայլեր</li>
+                            <li>🎀 7 օր հետադարձ կապ</li>
+                        </ul>
+                    </div>
+                    <div class="pt-6">
+                        <button onclick="openBookingModal('Անհատական Խորհրդատվություն')" class="w-full bg-blush-100 text-blush-700 font-bold py-3 rounded-2xl hover:bg-blush-200 transition-colors text-xs">
+                            Գրանցվել (14,990 դրամ)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="fluffy-card p-6 flex flex-col justify-between border-2 border-blush-400 relative bg-gradient-to-b from-white to-blush-50/50">
+                    <div class="absolute -top-3.5 right-6 bg-blush-500 text-white text-[10px] font-black px-3 py-1 rounded-full">
+                        ✨ Ամենապահանջված
+                    </div>
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-2xl gradient-pink-btn text-white flex items-center justify-center text-xl font-bold">
+                            🌸
+                        </div>
+                        <h3 class="text-xl font-bold text-rosewood-800">Ծնողական Ուղեկցման Փաթեթ</h3>
+                        <div class="text-2xl font-black text-rosewood-900">50,000 դրամ</div>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Երկարաժամկետ աջակցություն դպրոցական կամ դեռահասության ճգնաժամային փուլում գտնվող ընտանիքների համար։ 4 հանդիպում և ուղղորդում։
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-700 border-t border-blush-100 pt-3">
+                            <li>🎀 4 Անհատական հանդիպում</li>
+                            <li>🎀 Վարքագծի ամենօրյա շտկում</li>
+                            <li>🎀 Ծնող և երեխա կապի ամրապնդում</li>
+                        </ul>
+                    </div>
+                    <div class="pt-6">
+                        <button onclick="openBookingModal('Ուղեկցման Փաթեթ')" class="w-full gradient-pink-btn text-white font-bold py-3 rounded-2xl text-xs shadow-md">
+                            Ընտրել Փաթեթը (50,000 դրամ)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="fluffy-card p-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-cream-200 text-amber-700 flex items-center justify-center text-xl font-bold">
+                            👭
+                        </div>
+                        <h3 class="text-xl font-bold text-rosewood-800">Ծնողական Վեբինարներ և Խմբեր</h3>
+                        <div class="text-2xl font-black text-rosewood-900">9,990 դրամ</div>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Թեմատիկ օնլայն հանդիպումներ փոքր խմբերով, որտեղ քննարկում ենք դպրոցական, դեռահասության և վստահելի ծնողավարման թեմաները։
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-700 border-t border-blush-100 pt-3">
+                            <li>🎀 Փորձի փոխանակում</li>
+                            <li>🎀 Հարց ու պատասխան Լիլիթի հետ</li>
+                            <li>🎀 Օգտակար նյութեր</li>
+                        </ul>
+                    </div>
+                    <div class="pt-6">
+                        <button onclick="openBookingModal('Ծնողական Վեբինարներ և Խմբեր')" class="w-full bg-cream-200 text-amber-800 font-bold py-3 rounded-2xl hover:bg-cream-300 transition-colors text-xs">
+                            Միանալ խմբին (9,990 դրամ)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Direct Contact Section -->
+        <section id="contact" class="px-4 lg:px-8 py-16 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-blush-500 text-xs font-extrabold tracking-widest uppercase">🎀 Կապ Ինձ Հետ 🎀</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-rosewood-800">Վերագտնենք խաղաղությունը միասին</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Դուք մենակ չեք այս ճանապարհին։ Զանգահարեք կամ գրեք ինձ էլ․ փոստին, և ես սիրով կօգնեմ ձեր ընտանիքին։
+                    </p>
+
+                    <div class="space-y-4">
+                        <a href="tel:+37477716614" class="fluffy-card p-5 flex items-center gap-4 block hover:border-blush-400">
+                            <div class="w-12 h-12 rounded-2xl bg-blush-100 text-blush-600 flex items-center justify-center text-xl font-bold">
+                                📞
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-bold">Զանգահարել անմիջապես</div>
+                                <div class="text-base font-black text-rosewood-800">+374 (77) 71-66-14</div>
+                            </div>
+                        </a>
+
+                        <a href="mailto:poghosyanlilit05@gmail.com" class="fluffy-card p-5 flex items-center gap-4 block hover:border-blush-400">
+                            <div class="w-12 h-12 rounded-2xl bg-cream-200 text-amber-700 flex items-center justify-center text-xl font-bold">
+                                💌
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-bold">Էլ․ Փոստ</div>
+                                <div class="text-sm font-black text-rosewood-800">poghosyanlilit05@gmail.com</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Fast Form -->
+                <div class="lg:col-span-6">
+                    <div class="fluffy-card p-6 sm:p-8 space-y-4">
+                        <h3 class="text-xl font-black text-rosewood-800">Ուղարկել Հայտ 🎀</h3>
+                        <p class="text-xs text-slate-500">Լրացրեք տվյալները, և ես անձամբ կկապնվեմ ձեզ հետ։</p>
+
+                        <form onsubmit="handleBookingSubmit(event)" class="space-y-3">
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Ձեր Անունը</label>
+                                <input type="text" required placeholder="Օրինակ՝ Աննա" class="w-full px-4 py-3 rounded-2xl bg-blush-50/50 border border-blush-200 text-slate-800 text-xs focus:outline-none focus:border-blush-500">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-xs font-bold text-slate-700 block mb-1">Հեռախոսահամար</label>
+                                    <input type="tel" required placeholder="+374 77 716614" class="w-full px-4 py-3 rounded-2xl bg-blush-50/50 border border-blush-200 text-slate-800 text-xs focus:outline-none focus:border-blush-500">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-bold text-slate-700 block mb-1">Երեխայի Տարիքը</label>
+                                    <select class="w-full px-3 py-3 rounded-2xl bg-blush-50/50 border border-blush-200 text-slate-800 text-xs focus:outline-none focus:border-blush-500">
+                                        <option>7 - 12 տարեկան</option>
+                                        <option>12 - 18 տարեկան</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Համառոտ նկարագրեք հարցը</label>
+                                <textarea rows="3" placeholder="Դպրոցական հարմարում, դեռահասություն, գաջեթներ..." class="w-full px-4 py-2.5 rounded-2xl bg-blush-50/50 border border-blush-200 text-slate-800 text-xs focus:outline-none focus:border-blush-500 resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full gradient-pink-btn text-white font-extrabold py-3.5 rounded-2xl text-xs shadow-md">
+                                Ուղարկել Հայտը 🎀
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-rosewood-900 text-blush-100 py-10 px-4 lg:px-8 border-t border-rosewood-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">🎀</span>
+                <div>
+                    <span class="text-base font-black text-white block">Լիլիթ Խաչատրյան</span>
+                    <span class="text-[11px] text-blush-200">«Մանկավարժ Մայրիկ» • Սոցիալական Մանկավարժ</span>
+                </div>
+            </div>
+
+            <div class="text-xs text-blush-200 space-y-1">
+                <div>+374 (77) 71-66-14 | poghosyanlilit05@gmail.com</div>
+                <div>© 2026 Լիլիթ Խաչատրյան։ Բոլոր իրավունքները պաշտպանված են։</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 bg-rosewood-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border-2 border-blush-200 relative">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-blush-100 text-blush-600 flex items-center justify-center hover:bg-blush-200">
+                ✕
+            </button>
+
+            <div class="text-center space-y-1">
+                <div class="text-2xl">🎀</div>
+                <h3 class="text-xl font-black text-rosewood-800">Ամրագրել Խորհրդատվություն</h3>
+                <p class="text-xs text-slate-500">Լիլիթ Խաչատրյան</p>
+            </div>
+
+            <form onsubmit="handleBookingSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="text-xs font-bold text-slate-700 block mb-1">Ձեր Անունը</label>
+                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl bg-blush-50 border border-blush-200 text-slate-800 text-xs">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 block mb-1">Հեռախոս</label>
+                        <input type="tel" required placeholder="+374 77 716614" class="w-full px-3 py-2.5 rounded-xl bg-blush-50 border border-blush-200 text-slate-800 text-xs">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 block mb-1">Տարիքը</label>
+                        <select id="modal-age-select" class="w-full px-2 py-2.5 rounded-xl bg-blush-50 border border-blush-200 text-slate-800 text-xs">
+                            <option>7 - 12 տարեկան</option>
+                            <option>12 - 18 տարեկան</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full gradient-pink-btn text-white font-bold py-3 rounded-xl text-xs shadow-md mt-2">
+                    Հաստատել Գրանցումը 🎀
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function switchAgeGroup(groupId) {
+            document.querySelectorAll('.age-group-content').forEach(el => el.classList.add('hidden'));
+            
+            document.querySelectorAll('.age-tab').forEach(el => {
+                el.classList.remove('gradient-pink-btn', 'text-white', 'shadow-md');
+                el.classList.add('border-2', 'border-blush-200', 'text-slate-700', 'bg-white');
+            });
+
+            const activeGroup = document.getElementById(`group-${groupId}`);
+            if(activeGroup) activeGroup.classList.remove('hidden');
+
+            const activeTab = document.getElementById(`tab-${groupId}`);
+            if(activeTab) {
+                activeTab.classList.add('gradient-pink-btn', 'text-white', 'shadow-md');
+                activeTab.classList.remove('border-2', 'border-blush-200', 'text-slate-700', 'bg-white');
+            }
+        }
+
+        function openBookingModal(ageGroup) {
+            if(ageGroup) {
+                const select = document.getElementById('modal-age-select');
+                if(select) {
+                    for(let i = 0; i < select.options.length; i++) {
+                        if(select.options[i].text.includes(ageGroup)) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            alert('Շնորհակալություն գրանցման համար։ Լիլիթ Խաչատրյանը կապ կհաստատի ձեզ հետ։');
+            closeBookingModal();
+            event.target.reset();
+        }
+
+        function copySiteLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            const btn = document.getElementById('copy-link-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-heart text-blush-500"></i><span>Պատճենված է</span>`;
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
