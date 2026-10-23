@@ -59,10 +59,14 @@ function validate(body) {
   const message = clean(body.message, 1500)
   const digits = phone.replace(/\D/g, '')
 
-  if (!name) return null
-  if (!/^\+?[0-9\s().-]+$/.test(phone) || digits.length < 6 || digits.length > 15) return null
-  if (!AGE_OPTIONS.includes(age)) return null
-  return { name, phone, age, message }
+  const fields = {}
+  if (!name) fields.name = 'required'
+  if (!phone) fields.phone = 'required'
+  else if (!/^\+?[0-9\s().-]+$/.test(phone) || digits.length < 6 || digits.length > 15) fields.phone = 'invalid'
+  if (!AGE_OPTIONS.includes(age)) fields.age = 'invalid'
+
+  if (Object.keys(fields).length > 0) return { fields }
+  return { data: { name, phone, age, message } }
 }
 
 function formatDate(date) {
@@ -90,13 +94,19 @@ function buildMessage({ name, phone, age, message }, date) {
   return lines.join('\n')
 }
 
+// Env values pasted into dashboards often carry stray spaces/quotes; normalise them.
+function readEnv(name) {
+  return String(process.env[name] || '').trim().replace(/^["']|["']$/g, '')
+}
+
+// Returns { ok: true } or { ok: false, kind }, kind = config | timeout | network | telegram
 async function sendToTelegram(text) {
-  const token = process.env.TELEGRAM_BOT_TOKEN
-  console.log('TELEGRAM_BOT_TOKEN', token,process )
-  const chatId = process.env.TELEGRAM_CHAT_ID
-  if (!token || !chatId) {
-    console.error('Telegram is not configured: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID missing')
-    return false
+  const token = readEnv('TELEGRAM_BOT_TOKEN')
+  const chatId = readEnv('TELEGRAM_CHAT_ID')
+  const missing = [!token && 'TELEGRAM_BOT_TOKEN', !chatId && 'TELEGRAM_CHAT_ID'].filter(Boolean)
+  if (missing.length > 0) {
+    console.error('Telegram is not configured. Missing server environment variable(s):', missing.join(', '))
+    return { ok: false, kind: 'config' }
   }
 
   const controller = new AbortController()
@@ -115,16 +125,34 @@ async function sendToTelegram(text) {
     })
     const payload = await response.json().catch(() => null)
     if (!response.ok || !payload || payload.ok !== true) {
-      // Log only non-sensitive details; never the URL (it contains the token).
-      console.error('Telegram sendMessage failed', response.status, payload && payload.description)
-      return false
+      // Log only Telegram's own description (e.g. "Unauthorized", "chat not found"); never the URL (it contains the token).
+      console.error('Telegram sendMessage rejected:', response.status, payload && payload.description)
+      return { ok: false, kind: 'telegram' }
     }
-    return true
+    return { ok: true }
   } catch (error) {
-    console.error('Telegram request error', error && error.name)
-    return false
+    const timedOut = error && error.name === 'AbortError'
+    console.error(timedOut ? 'Telegram request timed out' : 'Telegram request failed:', error && error.name)
+    return { ok: false, kind: timedOut ? 'timeout' : 'network' }
   } finally {
     clearTimeout(timer)
+  }
+}
+
+const FAILURES = {
+  config: [500, 'server_not_configured'],
+  timeout: [504, 'telegram_timeout'],
+  network: [502, 'telegram_unreachable'],
+  telegram: [502, 'telegram_rejected'],
+}
+
+function sameOrigin(req) {
+  if (!req.headers.origin) return false
+  try {
+    const originHost = new URL(req.headers.origin).host
+    return originHost === req.headers.host || originHost === req.headers['x-forwarded-host']
+  } catch {
+    return false
   }
 }
 
@@ -137,11 +165,7 @@ export default async function handler(req, res) {
   }
 
   // Same-origin check: browsers always send Origin on this request.
-  try {
-    if (!req.headers.origin || new URL(req.headers.origin).host !== req.headers.host) {
-      return res.status(403).json({ ok: false, error: 'forbidden' })
-    }
-  } catch {
+  if (!sameOrigin(req)) {
     return res.status(403).json({ ok: false, error: 'forbidden' })
   }
 
@@ -152,18 +176,31 @@ export default async function handler(req, res) {
   }
 
   const body = parseBody(req)
-  if (!body) return res.status(400).json({ ok: false, error: 'invalid' })
+  if (!body || typeof body !== 'object') {
+    return res.status(400).json({ ok: false, error: 'invalid_json', message: 'Request body must be a JSON object.' })
+  }
 
-  // Honeypot: bots fill the hidden field. Pretend success, send nothing.
+  // Honeypot: an EMPTY `website` field is normal. Only a filled one marks a bot,
+  // which gets a fake success and nothing is sent.
   if (typeof body.website === 'string' && body.website.trim() !== '') {
     return res.status(200).json({ ok: true })
   }
 
-  const data = validate(body)
-  if (!data) return res.status(400).json({ ok: false, error: 'invalid' })
+  const result = validate(body)
+  if (result.fields) {
+    return res.status(400).json({
+      ok: false,
+      error: 'validation_failed',
+      fields: result.fields,
+      message: 'Some fields are missing or invalid.',
+    })
+  }
 
-  const sent = await sendToTelegram(buildMessage(data, new Date()))
-  if (!sent) return res.status(502).json({ ok: false, error: 'delivery_failed' })
+  const sent = await sendToTelegram(buildMessage(result.data, new Date()))
+  if (!sent.ok) {
+    const [status, error] = FAILURES[sent.kind]
+    return res.status(status).json({ ok: false, error })
+  }
 
   return res.status(200).json({ ok: true })
 }

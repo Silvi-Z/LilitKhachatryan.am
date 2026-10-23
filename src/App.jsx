@@ -10,6 +10,19 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import BookingModal from './components/BookingModal'
 
+const FIELD_ERROR_MESSAGES = {
+  name: 'Խնդրում ենք մուտքագրել Ձեր անունը։',
+  phone: 'Խնդրում ենք մուտքագրել վավեր հեռախոսահամար։',
+  age: 'Խնդրում ենք ընտրել երեխայի տարիքային խումբը։',
+}
+
+// If the server rejected a specific field, tell the visitor which one; otherwise use the generic message.
+function getValidationMessage(result) {
+  if (!result || result.error !== 'validation_failed' || !result.fields) return undefined
+  const field = ['name', 'phone', 'age'].find((key) => result.fields[key])
+  return field ? FIELD_ERROR_MESSAGES[field] : undefined
+}
+
 const SUBMIT_ERROR_MESSAGE = 'Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել կրկին մի փոքր ուշ։'
 
 export default function App() {
@@ -50,15 +63,20 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-      if (!response.ok) throw new Error('request failed')
+      if (!response.ok) {
+        const result = await response.json().catch(() => null)
+        const error = new Error('request failed')
+        error.userMessage = getValidationMessage(result)
+        throw error
+      }
 
       // Shown only after the server confirms Telegram accepted the message.
       alert('Շնորհակալություն գրանցման համար։ Լիլիթ Խաչատրյանը կապ կհաստատի ձեզ հետ։')
       closeBookingModal()
       form.reset()
-    } catch {
+    } catch (error) {
       // Form stays open and filled in so the visitor can try again.
-      alert(SUBMIT_ERROR_MESSAGE)
+      alert((error && error.userMessage) || SUBMIT_ERROR_MESSAGE)
     } finally {
       submittingRef.current = false
       setIsSubmitting(false)

@@ -1,6 +1,4 @@
-import HeroPhoto from '../assets/lilit-photo.jpg';
 export default function Hero({ openBookingModal }) {
-    
   return (
     <section className="bg-ivory relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-14 md:py-24 lg:py-28">
@@ -38,9 +36,7 @@ export default function Hero({ openBookingModal }) {
                 <div className="absolute -top-8 -right-6 sm:-right-10 w-2/3 aspect-square rounded-full bg-rose/70"></div>
                 <div className="absolute -bottom-6 -left-6 w-1/2 h-2/5 bg-plum rounded-tr-[4rem]"></div>
                 <div className="relative aspect-[4/5] rounded-t-full overflow-hidden bg-rose flex items-end justify-center">
-                <img src={HeroPhoto} alt="Lilit" className="w-full h-full object-cover" />
-
-                    {/* <i className="fa-solid fa-user text-plum/20 text-[10rem] sm:text-[13rem] translate-y-8"></i> */}
+                    <i className="fa-solid fa-user text-plum/20 text-[10rem] sm:text-[13rem] translate-y-8"></i>
                 </div>
             </div>
         </div>
